@@ -29,40 +29,43 @@ def print_board(knight_positions): # needs to be readjusted to accomodate matrix
     return
 
 
-def available_moves_from_square(current_pos): # needs an if check for if a square has already been visited.
+def available_moves(current_pos): # needs an if check for if a square has already been visited.
     """ 
     On an n x n matrix board a knight's movements can be represented by addition and subtraction.
     """
     return [(current_pos[0] + move[0], current_pos[1] + move[1]) for move in move_types if (current_pos[0] + move[0], current_pos[1] + move[1]) in all_squares]
 
 
-
 # dictionaries for constant time lookups
 used = {sqr: False for sqr in all_squares}
-available_moves = {sqr: available_moves_from_square(sqr) for sqr in all_squares}
+possible_moves = {sqr: available_moves(sqr) for sqr in all_squares}
 
 
-for key in available_moves.keys():
-    degree = [(len(available_moves_from_square(available_moves[key][i])), available_moves[key]) for i in range(len(available_moves[key]))]
-    degree.sort()
-    available_moves[key] = [degree[i][1] for i in range(len(degree))]
-# each list in available moves should now be sorted by number of possible moves from that square
-    
-    
+# sort by number of possible moves from that square
+for key in possible_moves.keys():
+    moves = possible_moves[key]
+    degree_moves = [(len(available_moves(move)), move) for move in moves]
+    degree_moves.sort()
+    possible_moves[key] = [degree_moves[i][1] for i in range(len(degree_moves))]
 
-def next_move(square, stack, n, l, used, available_moves):
+
+def next_move(square, stack, n, l, used, possible_moves):
     l += 1
     stack.append(square)
+    used[square] = True
     if l == n**2:
         return stack, l
-    for i in range(len(available_moves[square])):
-        if not used[sqr]:
-            used[sqr] = True
-            if next_move(available[square][i], stack, n, l, used, available_moves)[1] == n**2:
+    print(stack, l)
+    print()
+    for i in range(len(possible_moves[square])):
+        if not used[possible_moves[square][i]]:
+            if next_move(possible_moves[square][i], stack, n, l, used, possible_moves)[1] == n**2:
                 return stack, l
-            used[sqr] = False
-    l -= 1
-    stack.pop()
+    else:
+        l -= 1
+        stack.pop()
+        used[square] = False
+        return "didn't work", stack, l, used
             
         
 # the big sad has defeated me for tonight
@@ -71,12 +74,10 @@ def next_move(square, stack, n, l, used, available_moves):
 
 
 
-print_board([i for i in range(n**2)])
-print()
-for key, value in available_moves.items():
-    print(key, value)
-print()
-print(next_move((2, 1), n, l, stack, available_moves, used))
+
+
+print(next_move(starting_square, stack, n, l, used, possible_moves))
+
 
 
 
