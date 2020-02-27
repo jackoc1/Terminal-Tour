@@ -5,8 +5,10 @@
 # taking only valid moves at that point (hamiltonian path).
 # 
 # Using Warnsdorff's algorithm
+#
+# Implement another varaible m and have m, n be row, col size of board.
 
-n = 7       # change to int(input())
+n = 10       # change to int(input())
 l = 0       # length of move stack
 stack = []  # keep track of moves currently taken
 
@@ -49,7 +51,13 @@ for key in possible_moves.keys():
     possible_moves[key] = [degree_moves[i][1] for i in range(len(degree_moves))]
 
 
-def next_move(square, stack, n, l, used, possible_moves):
+def next_move(square): #, stack, n, l, used, possible_moves):
+    global n
+    global l
+    global stack
+    global used
+    global possible_moves
+    
     l += 1
     stack.append(square)
     used[square] = True
@@ -59,7 +67,7 @@ def next_move(square, stack, n, l, used, possible_moves):
     #print()
     for i in range(len(possible_moves[square])):
         if not used[possible_moves[square][i]]:
-            temp = next_move(possible_moves[square][i], stack, n, l, used, possible_moves)
+            temp = next_move(possible_moves[square][i]) #, stack, n, l, used, possible_moves)
             if temp[1] == n**2:
                 return temp
             
@@ -79,18 +87,4 @@ def next_move(square, stack, n, l, used, possible_moves):
 
 
 
-print(next_move(starting_square, stack, n, l, used, possible_moves))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+print(next_move(starting_square)) #, stack, n, l, used, possible_moves))
