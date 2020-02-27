@@ -6,7 +6,7 @@
 # 
 # Using Warnsdorff's algorithm
 
-n = 5       # change to int(input())
+n = 7       # change to int(input())
 l = 0       # length of move stack
 stack = []  # keep track of moves currently taken
 
@@ -55,17 +55,20 @@ def next_move(square, stack, n, l, used, possible_moves):
     used[square] = True
     if l == n**2:
         return stack, l
-    print(stack, l)
-    print()
+    #print(stack, l)
+    #print()
     for i in range(len(possible_moves[square])):
         if not used[possible_moves[square][i]]:
-            if next_move(possible_moves[square][i], stack, n, l, used, possible_moves)[1] == n**2:
-                return stack, l
+            temp = next_move(possible_moves[square][i], stack, n, l, used, possible_moves)
+            if temp[1] == n**2:
+                return temp
+            
     else:
         l -= 1
         stack.pop()
         used[square] = False
-        return "didn't work", stack, l, used
+        return stack, l
+        
             
         
 # the big sad has defeated me for tonight
