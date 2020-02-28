@@ -1,11 +1,5 @@
 # This file will contain the majority of the text which will be printed to the screen and also functions
-# will be called when asking for user input.
-import os
-
-
-def clear():
-    os.system("clear||cls")
-    return
+# that will be called when asking for user input.
 
 
 def greeting():
