@@ -5,4 +5,4 @@ It takes advantage of Warnsdorff's algorithm to speed up search time. This is a 
 
 Terminal Tour is now a functioning programme. I have hardcapped board sizes to be composed of less than 100 squares because after this amount the wait time becomes very long.
 
-To use Terminal Tour run the programme in your terminal using python3.
+To use Terminal Tour run the programme Terminal_Tour_Recursive.py in your terminal using python3.
