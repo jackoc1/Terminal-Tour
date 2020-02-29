@@ -3,6 +3,7 @@ This file will function as the main function for this project.
 """
 import Print_Board as pb
 import Terminal_Tour_Interface as tti
+import time
 
 # knight moves represented by addition of row and column indices
 move_types = ((-2,1), (2,1), (1,-2), (1,2), (-1,2), (-1, -2), (-2,-1), (2,-1)) 
@@ -41,12 +42,11 @@ def next_move(square):
     used[square] = True
     if l == num_squares:
         return stack, l
-    for i in range(len(possible_moves[square])):
-        if not used[possible_moves[square][i]]:
-            temp = next_move(possible_moves[square][i])
+    for sqr in possible_moves[square]:
+        if not used[sqr]:
+            temp = next_move(sqr)
             if temp[1] == num_squares:
                 return temp
-            
     else:
         l -= 1
         stack.pop()
@@ -77,7 +77,7 @@ def main():
         all_squares = [(i,j) for i in range(m) for j in range(n)]
     
         used = {sqr: False for sqr in all_squares}  # returns True if a square is in the stack
-        possible_moves = {sqr: available_moves(sqr, all_squares) for sqr in all_squares} 
+        possible_moves = {sqr: available_moves(sqr, all_squares) for sqr in all_squares}
         
         # sorts possible moves from each square by which square has the least number of possible moves from it (Warnsdorff's algorithm).
         for key in possible_moves.keys():
@@ -87,6 +87,7 @@ def main():
             possible_moves[key] = [degree_moves[i][1] for i in range(len(degree_moves))]
             
         knight_positions = next_move(starting_square)[0]
+
         if not knight_positions:
             print()
             print("A knight's tour could not be calculated for a board with the chosen dimensions.")
