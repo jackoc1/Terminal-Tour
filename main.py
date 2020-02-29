@@ -38,9 +38,9 @@ def main():
             print("A knight's tour could not be calculated for a board with the chosen dimensions.")
         else:
             pb.print_moves(knight_positions, speed, all_squares, n)
-            pb.print_final_board(knight_positions, all_squares, cfg.num_squares, n)
-        
+            pb.print_final_board(knight_positions, all_squares, n)
         again = tti.go_again()
+    exit()
 
 if __name__ == "__main__":
     main()

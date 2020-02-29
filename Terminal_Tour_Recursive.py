@@ -22,12 +22,6 @@ def next_move(square):
     used: a dictionary which states returns true if a square is in the stack.
     possible_moves: a dictionary which returns a lsit of all legal moves from a square.
     """
-    #global num_squares
-    #global l
-    #global stack
-    #global used
-    #global possible_moves
-    
     cfg.l += 1
     cfg.stack.append(square)
     cfg.used[square] = True
