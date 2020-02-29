@@ -27,7 +27,7 @@ def get_square(m, n):
         i, j = input("Please enter the starting square's index. Please enter two space separated numbers where the first number corresponds to the starting square's row and the second number to its column (eg 4 5): ").strip().split()
         if 0 < int(i) < m + 1 and 0 < int(j) < n + 1: 
             print()
-            return int(m) - 1, int(n) - 1
+            return int(i) - 1, int(j) - 1
         else:
             print("That square does not exist on the board size you have specified.\n")
             return get_square(m, n)
