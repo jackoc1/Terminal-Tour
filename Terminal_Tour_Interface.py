@@ -21,11 +21,11 @@ def get_board_size():
     except:
         print("Please use the specified input format.")
         return get_board_size()
-    
+
 def get_square(m, n):
     try:
         i, j = input("Please enter the starting square's index. Please enter two space separated numbers where the first number corresponds to the starting square's row and the second number to its column (eg 4 5): ").strip().split()
-        if 0 < int(i) < m + 1 and 0 < int(j) < n + 1: 
+        if 0 < int(i) < m + 1 and 0 < int(j) < n + 1:
             print()
             return int(i) - 1, int(j) - 1
         else:
@@ -34,8 +34,8 @@ def get_square(m, n):
     except:
         print("Please enter the starting square's index as specified.\n")
         return get_square(m, n)
-    
-    
+
+
 def choose_speed():
     speed = input("Please choose the speed at which you would like each move to be displayed in the terminal (slow, medium, fast): ").strip()
     if speed in ["slow", "medium", "fast"]:
@@ -44,16 +44,15 @@ def choose_speed():
     else:
         print("Please select the speed from one of the options above.\n")
         return choose_speed()
-    
-    
+
+
 def go_again():
     print("\n")
     response = input('If you would like to try another board please type "yes", else type "no": ')
-    if response == "yes": 
+    if response == "yes":
         return True
-    elif response == "no": 
+    elif response == "no":
         return False
     else:
         print("Please enter either yes or no to continue or exit.")
         return go_again()
-    

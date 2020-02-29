@@ -60,4 +60,4 @@ def print_moves(knight_positions, speed, all_squares, m, n):
         print()
         time.sleep(wait)
     return
-        
+
