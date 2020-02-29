@@ -1,8 +1,7 @@
 # This file will contain the various functions needed for displaying the board in the terminal.
 import os
 import time
-import functools
-import config as cfg
+
 
 def clear():
     """ Wipes the terminal screen of all text. """
@@ -20,21 +19,21 @@ def print_example_board():
     return
 
 
-def print_final_board(knight_positions, all_squares, n):
+def print_final_board(knight_positions, all_squares, m, n):
     """
     Prints the full knight's tour path to the screen. Squares are numbered 1-num_squares in order of
     the squares taken by the knight for the full knight's tour.
     """
     clear()
     print("Here is your completed knight's tour.")
-    for i in range(cfg.num_squares):
+    for i in range(m*n):
         if i % n == 0:
             print()
         print(f"{knight_positions.index(all_squares[i])+1:02d}", end=' ')
     return
 
 
-def print_moves(knight_positions, speed, all_squares, n):
+def print_moves(knight_positions, speed, all_squares, m, n):
     """
     For each move the knight takes a makeshift board consisting of zeros will be printed to the screen.
     The knight's current position will be represented by a 7.
@@ -51,7 +50,7 @@ def print_moves(knight_positions, speed, all_squares, n):
         clear()
         print("Move number: ", move_num)
         move_num += 1
-        for i in range(cfg.num_squares):
+        for i in range(m*n):
             if i % n == 0:
                 print()
             if i == all_squares.index(move):
