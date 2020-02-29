@@ -94,7 +94,7 @@ def main():
         else:
             pb.print_moves(knight_positions, speed, all_squares, m, n)
             pb.print_final_board(knight_positions, all_squares, m, n)
-        print(knight_positions)
+            
         again = tti.go_again()
     exit()
 
